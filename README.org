@@ -1,15 +1,23 @@
-* dwm - dynamic window manager
-dwm is an extremely fast, small, and dynamic window manager for X.
+#+TITLE: dwm - dynamic window manager
 
 * Table of Contents :toc:
-- [[#dwm---dynamic-window-manager][dwm - dynamic window manager]]
-- [[#requirements][Requirements]]
+- [[#about-dwm][About dwm]]
+  - [[#requirements][Requirements]]
+  - [[#patches][Patches]]
 - [[#installation][Installation]]
 - [[#running-dwm][Running dwm]]
 - [[#configuration][Configuration]]
 
-* Requirements
+* About dwm
+dwm is an extremely fast, small, and dynamic window manager for X.
+
+** Requirements
 In order to build dwm you need the Xlib header files.
+
+** Patches
+The folowing patches have been abplied:
++ Systray
++ vanity-gaps
 
 
 * Installation
