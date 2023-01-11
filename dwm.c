@@ -886,7 +886,7 @@ drawbar(Monitor *m)
 		//tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px extra right padding */
 		//drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
         w = TEXTW(text) - lrpad + 2;
-        drw_text(drw, m->ww - statusw + x, 0, tw, bh, 0, text, 0);
+        drw_text(drw, m->ww - statusw - stw + x, 0, tw, bh, 0, text, 0);
         tw = statusw;
 	}
 
