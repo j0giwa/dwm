@@ -3,7 +3,7 @@
 * Table of Contents :toc:
 - [[#about-dwm][About dwm]]
   - [[#requirements][Requirements]]
-  - [[#patches][Patches]]
+  - [[#patches-and-features][Patches and features]]
 - [[#installation][Installation]]
 - [[#running-dwm][Running dwm]]
 - [[#configuration][Configuration]]
@@ -14,13 +14,13 @@ dwm is an extremely fast, small, and dynamic window manager for X.
 ** Requirements
 In order to build dwm you need:
 + Xlib header files
-+ SFMono Nerd Font.
 
-** Patches
-The folowing patches have been abplied:
-+ Systray
-+ vanity-gaps
-
+** Patches and features
+The folowing features have been added:
++ [[https://dwm.suckless.org/patches/statuscmd/][clickable statusbar]] with [[https://dwm.suckless.org/patches/systray/][systemtray]]
++ [[https://dwm.suckless.org/patches/vanitygaps/][gaps]] across all layouts
++ Reads [[https://dwm.suckless.org/patches/xrdb/][xresources]] - pywall compatible :)
++ automaticly [[https://dwm.suckless.org/patches/hide_vacant_tags/][hides unused tags]]
 
 * Installation
 Edit config.mk to match your local setup (dwm is installed into the /usr/local namespace by default).
@@ -40,7 +40,7 @@ exec dwm
 In order to connect dwm to a specific display, make sure that
 the DISPLAY environment variable is set correctly, e.g.:
 #+begin_example bash
-    DISPLAY=foo.bar:1 exec dwm
+DISPLAY=foo.bar:1 exec dwm
 #+end_example
 (This will start dwm on display :1 of the host foo.bar.)
 

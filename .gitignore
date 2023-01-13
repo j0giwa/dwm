@@ -2,3 +2,4 @@ tignore
 *.orig
 *.rej
 .o
+config.h
