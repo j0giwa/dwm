@@ -1,5 +1,6 @@
-tignore
+.gittignore
 *.orig
 *.rej
-.o
+*.o
+dwm
 config.h
