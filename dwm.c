@@ -511,7 +511,7 @@ buttonpress(XEvent *e)
 		} else if (ev->x < x + TEXTW(selmon->ltsymbol))
 			click = ClkLtSymbol;
 		//else if (ev->x > selmon->ww - (int)TEXTW(stext) - getsystraywidth())
-        else if (ev->x > selmon->ww - statusw) {
+        else if (ev->x > selmon->ww - statusw - getsystraywidth()) {
             char *text, *s, ch;
             *lastbutton = '0' + ev->button;
 
@@ -876,18 +876,20 @@ drawbar(Monitor *m)
                 ch = *s;
                 *s = '\0';
                 tw = TEXTW(text) - lrpad;
-                drw_text(drw, m->ww - statusw + x, 0, tw, bh, 0, text, 0);
+                drw_text(drw, m->ww - statusw - stw + x, 0, tw, bh, 0, text, 0);
                 x += tw;
                 *s = ch;
                 text = s + 1;
             }
         }
 
-		//tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px extra right padding */
+        //tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px extra right padding */
 		//drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
-        w = TEXTW(text) - lrpad + 3;
-        drw_text(drw, m->ww - statusw - stw + x, 0, tw, bh, 0, text, 0);
+        //w = TEXTW(text) - lrpad + 2;
+        
         tw = statusw;
+        w = TEXTW(stext) - lrpad / 2 + 5; /* 5px extra right padding */
+        drw_text(drw, m->ww - statusw - stw + x, 0, tw, bh, 0, text, 0);
 	}
 
 	resizebarwin(m);
