@@ -96,7 +96,7 @@ static const char *termcmd[]  = { "st", NULL };
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
 static const StatusCmd statuscmds[] = {
     //{ "notify-send Mouse$BUTTON", 1 },
-    { "st -e $HOME/.scripts/screensetup.sh", 1},
+    { "st -e ncmpcpp", 1},
     { "st -e htop", 2},
     { "nm-connection-editor", 3},
 };
