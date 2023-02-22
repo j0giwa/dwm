@@ -22,6 +22,7 @@ The folowing features have been added:
 + [[https://dwm.suckless.org/patches/vanitygaps/][gaps]] across all layouts
 + Reads [[https://dwm.suckless.org/patches/xrdb/][xresources]] - pywall compatible :)
 + automaticly [[https://dwm.suckless.org/patches/hide_vacant_tags/][hides unused tags]]
++ cycle tags via [[https://lists.suckless.org/dev/1104/7590.html][shiftview]]
 
 * Installation
 Edit config.mk to match your local setup (dwm is installed into the /usr/local namespace by default).

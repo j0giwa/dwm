@@ -103,6 +103,7 @@ static const StatusCmd statuscmds[] = {
 
 static const char *statuscmd[] = { "/bin/sh", "-c", NULL, NULL };
 
+#include "shiftview.c"
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 
@@ -157,6 +158,8 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 
+    { MODKEY,                       XK_Left,      shiftview,      {.i = -1} },
+    { MODKEY,                       XK_Right,      shiftview,      {.i = +1} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
