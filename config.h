@@ -19,11 +19,14 @@ static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
 
+/* bar */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=8" };
-static const char dmenufont[]       = "monospace:size=8";
+static const int user_bh            = 24;        /* 0 means that dwm will calculate bar height, >= 1 means dwm willuse user_bh as bar height */
+static const char *fonts[]          = { "Iosekva Nerd Font :size=10" };
+static const char dmenufont[]       = "Iosevka Nerd Font:size=10";
 
+/* colorsheme  */
 static const int mincolors          = 1;        /* switch selbg and selfg for a 'less distracting' colorscheme (mainly used for pywal-colors) */
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#333333";
@@ -37,8 +40,19 @@ static char *colors[][3] = {
        [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
-/* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+/* tagging (labels based on my usual workflow) */
+static const char *tags[] = {  
+    "1:  ", /* tag 1 is used for Terminals*/
+    "2:   ", /* tag 2 is used for Web browsing */
+    "3:  ", /* tag 3 is used for coding and other edits */
+    "4:  󰈙 ", /* tag 4 is used for dokument reading */
+    "5:   ", /* tag 5 is ud3ed for chat applictions*/
+    "6:    ", /* tag 4 is uded for music */
+    /* the rest of the tags are usualy unused but availible if needed*/
+    "7",
+    "8", 
+    "9" 
+};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -46,12 +60,12 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
+	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.75; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */

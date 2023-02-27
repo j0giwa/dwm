@@ -883,10 +883,6 @@ drawbar(Monitor *m)
             }
         }
 
-        //tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px extra right padding */
-		//drw_text(drw, m->ww - tw - stw, 0, tw, bh, lrpad / 2 - 2, stext, 0);
-        //w = TEXTW(text) - lrpad + 2;
-        
         tw = statusw;
         w = TEXTW(stext) - lrpad / 2 + 5; /* 5px extra right padding */
         drw_text(drw, m->ww - statusw - stw + x, 0, tw, bh, 0, text, 0);
@@ -1857,7 +1853,7 @@ setup(void)
 	if (!drw_fontset_create(drw, fonts, LENGTH(fonts)))
 		die("no fonts could be loaded.");
 	lrpad = drw->fonts->h;
-	bh = drw->fonts->h + 2;
+    bh = user_bh ? user_bh : drw->fonts->h + 2;
 	updategeom();
 	/* init atoms */
 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
