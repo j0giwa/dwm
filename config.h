@@ -1,13 +1,11 @@
 
 /* See LICENSE file for copyright and license details. */
 
-/* appearance */
+/* Appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 15;       /* snap pixel */
-
-/* Vanitygaps */
-static const unsigned int gappih    = 5;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 5;       /* vert inner gap between windows */
+static const unsigned int gappih    = 5;        /* horiz inner gap between windows */
+static const unsigned int gappiv    = 5;        /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
@@ -22,19 +20,19 @@ static const int showsystray        = 1;        /* 0 means no systray */
 /* bar */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 24;        /* 0 means that dwm will calculate bar height, >= 1 means dwm willuse user_bh as bar height */
+static const int user_bh            = 24;       /* 0 means that dwm will calculate bar height, >= 1 means dwm willuse user_bh as bar height */
 static const char *fonts[]          = { "Iosekva Nerd Font :size=10" };
 static const char dmenufont[]       = "Iosevka Nerd Font:size=10";
 
 /* colorsheme  */
 static const int mincolors          = 1;        /* switch selbg and selfg for a 'less distracting' colorscheme (mainly used for pywal-colors) */
-static char normbgcolor[]           = "#222222";
-static char normbordercolor[]       = "#333333";
-static char normfgcolor[]           = "#888888";
-static char selfgcolor[]            = "#FFFFFF";
-static char selbordercolor[]        = "#4C7899";
-static char selbgcolor[]            = "#285577";
-static char *colors[][3] = {
+static       char normbgcolor[]           = "#222222";
+static       char normbordercolor[]       = "#333333";
+static       char normfgcolor[]           = "#888888";
+static       char selfgcolor[]            = "#FFFFFF";
+static       char selbordercolor[]        = "#4C7899";
+static       char selbgcolor[]            = "#285577";
+static       char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
        [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
@@ -42,13 +40,20 @@ static char *colors[][3] = {
 
 /* tagging (labels based on my usual workflow) */
 static const char *tags[] = {  
-    "1:  ", /* tag 1 is used for Terminals*/
-    "2:   ", /* tag 2 is used for Web browsing */
-    "3:  ", /* tag 3 is used for coding and other edits */
-    "4:  󰈙 ", /* tag 4 is used for dokument reading */
-    "5:   ", /* tag 5 is ud3ed for chat applictions*/
-    "6:    ", /* tag 4 is uded for music */
+    //"1:  ", /* tag 1 is used for Terminals*/
+    //"2:   ", /* tag 2 is used for Web browsing */
+    //"3:  ", /* tag 3 is used for coding and other edits */
+    //"4:  󰈙 ", /* tag 4 is used for dokument reading */
+    //"5:   ", /* tag 5 is ud3ed for chat applictions*/
+    //"6:    ", /* tag 4 is uded for music */
+    
     /* the rest of the tags are usualy unused but availible if needed*/
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
     "7",
     "8", 
     "9" 
@@ -65,7 +70,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.75; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.65; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -75,11 +80,11 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
+	{ "[ ]=",      tile },    /* first entry is default */
 	{ "[M]",      monocle },
 	{ "[@]",      spiral },
 	{ "[\\]",     dwindle },
-	{ "H[]",      deck },
+	{ "H[ ]",      deck },
 	{ "TTT",      bstack },
 	{ "===",      bstackhoriz },
 	{ "HHH",      grid },
@@ -164,6 +169,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_space,  zoom,           {0} },
 
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
