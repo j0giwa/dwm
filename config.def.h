@@ -25,7 +25,7 @@ static const int user_bh            = 0;        /* 0 means that dwm will calcula
 static const char *fonts[]          = { "monospace:size=8" };
 static const char dmenufont[]       = "monospace:size=8";
 
-static const int mincolors          = 0;        /* switch selbg and selfg for a 'less distracting' colorscheme (mainly used for pywal-colors) */
+static const int mincolors          = 0;        /* switch xrdb selbg and selfg for a 'less distracting' colorscheme */
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#333333";
 static char normfgcolor[]           = "#888888";
@@ -94,6 +94,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *roficmd[] = { "rofi", -"show", "drun", NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
@@ -113,6 +114,7 @@ static const Key keys[] = {
     // Program shortcuts
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 

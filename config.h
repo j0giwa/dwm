@@ -8,7 +8,7 @@ static const unsigned int gappih    = 5;        /* horiz inner gap between windo
 static const unsigned int gappiv    = 5;        /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
-static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
+static       int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 
 /* systray */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -25,7 +25,7 @@ static const char *fonts[]          = { "Iosekva Nerd Font :size=10" };
 static const char dmenufont[]       = "Iosevka Nerd Font:size=10";
 
 /* colorsheme  */
-static const int mincolors          = 1;        /* switch selbg and selfg for a 'less distracting' colorscheme (mainly used for pywal-colors) */
+static const int mincolors                = 1;        /* switch xrdb selbg and selfg for a 'less distracting' colorscheme */
 static       char normbgcolor[]           = "#222222";
 static       char normbordercolor[]       = "#333333";
 static       char normfgcolor[]           = "#888888";
@@ -112,6 +112,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *roficmd[] = { "rofi", "-modes", "drun,window", "-show", "drun",  NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
@@ -130,6 +131,7 @@ static const Key keys[] = {
 
     // Program shortcuts
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
