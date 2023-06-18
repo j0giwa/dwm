@@ -1,14 +1,16 @@
-
 /* See LICENSE file for copyright and license details. */
 
-/* Appearance */
+/* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 15;       /* snap pixel */
-static const unsigned int gappih    = 5;        /* horiz inner gap between windows */
-static const unsigned int gappiv    = 5;        /* vert inner gap between windows */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
+
+/* Vanitygaps */
+static const unsigned int gappih    = 5;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 5;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
-static       int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
+static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 
 /* systray */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -17,60 +19,43 @@ static const unsigned int systrayspacing = 2;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
 
-/* bar */
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 24;       /* 0 means that dwm will calculate bar height, >= 1 means dwm willuse user_bh as bar height */
-static const char *fonts[]          = { "Iosekva Nerd Font :size=10" };
-static const char dmenufont[]       = "Iosevka Nerd Font:size=10";
+static const int topbar             = 0;        /* 0 means bottom bar */
+static const int barvpad            = 2;        /* veritcal bar padding */
+static const int user_bh            = 0;        /* 0 means that dwm will calculate bar height, >= 1 means dwm willuse user_bh as bar height */
+static const char *fonts[]          = { "monospace:size=8" };
+static const char dmenufont[]       = "monospace:size=8";
 
-/* colorsheme  */
-static const int mincolors                = 1;        /* switch xrdb selbg and selfg for a 'less distracting' colorscheme */
-static       char normbgcolor[]           = "#222222";
-static       char normbordercolor[]       = "#333333";
-static       char normfgcolor[]           = "#888888";
-static       char selfgcolor[]            = "#FFFFFF";
-static       char selbordercolor[]        = "#4C7899";
-static       char selbgcolor[]            = "#285577";
-static       char *colors[][3] = {
+static const int mincolors          = 0;        /* switch xrdb selbg and selfg for a 'less distracting' colorscheme */
+static char normbgcolor[]           = "#222222";
+static char normbordercolor[]       = "#333333";
+static char normfgcolor[]           = "#888888";
+static char selfgcolor[]            = "#FFFFFF";
+static char selbordercolor[]        = "#4C7899";
+static char selbgcolor[]            = "#285577";
+static char *colors[][3] = {
        /*               fg           bg           border   */
        [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
        [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
-/* tagging (labels based on my usual workflow) */
-static const char *tags[] = {  
-    //"1:  ", /* tag 1 is used for Terminals*/
-    //"2:   ", /* tag 2 is used for Web browsing */
-    //"3:  ", /* tag 3 is used for coding and other edits */
-    //"4:  󰈙 ", /* tag 4 is used for dokument reading */
-    //"5:   ", /* tag 5 is ud3ed for chat applictions*/
-    //"6:    ", /* tag 4 is uded for music */
-    
-    /* the rest of the tags are usualy unused but availible if needed*/
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8", 
-    "9" 
-};
+/* tagging */
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            0,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
-static const float mfact     = 0.65; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -80,11 +65,11 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[ ]=",      tile },    /* first entry is default */
+	{ "[]=",      tile },    /* first entry is default */
 	{ "[M]",      monocle },
 	{ "[@]",      spiral },
 	{ "[\\]",     dwindle },
-	{ "H[ ]",      deck },
+	{ "H[]",      deck },
 	{ "TTT",      bstack },
 	{ "===",      bstackhoriz },
 	{ "HHH",      grid },
@@ -112,7 +97,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *roficmd[] = { "rofi", "-modes", "drun,window", "-show", "drun",  NULL };
+static const char *roficmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 /* commands spawned when clicking statusbar, the mouse button pressed is exported as BUTTON */
@@ -131,8 +116,8 @@ static const Key keys[] = {
 
     // Program shortcuts
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_r,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_r,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 
@@ -171,7 +156,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_space,  zoom,           {0} },
 
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -181,9 +165,9 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
-    
-    { MODKEY,                       XK_Left,   shiftview,      {.i = -1} },
-    { MODKEY,                       XK_Right,  shiftview,      {.i = +1} },
+
+    { MODKEY,                       XK_Left,      shiftview,      {.i = -1} },
+    { MODKEY,                       XK_Right,      shiftview,      {.i = +1} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
