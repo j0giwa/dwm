@@ -1378,12 +1378,19 @@ loadxrdb()
       xrdb = XrmGetStringDatabase(resm);
 
       if (xrdb != NULL) {
-        XRDB_LOAD_COLOR("dwm.normbordercolor", normbordercolor);
-        XRDB_LOAD_COLOR("dwm.normbgcolor", normbgcolor);
-        XRDB_LOAD_COLOR("dwm.normfgcolor", normfgcolor);
-        XRDB_LOAD_COLOR("dwm.selbordercolor", selbordercolor);
-        XRDB_LOAD_COLOR("dwm.selbgcolor", selbgcolor);
-        XRDB_LOAD_COLOR("dwm.selfgcolor", selfgcolor);
+        XRDB_LOAD_COLOR("dwm.foreground", normfgcolor);
+        XRDB_LOAD_COLOR("dwm.background", normbgcolor);
+        XRDB_LOAD_COLOR("dwm.color0", normbordercolor);
+        /* flip fore- and background color if enabled in the config */
+        if (mincolors) {
+            XRDB_LOAD_COLOR("dwm.color4", selfgcolor);
+            XRDB_LOAD_COLOR("dwm.background", selbgcolor);
+        } else { 
+            XRDB_LOAD_COLOR("dwm.background", selfgcolor);
+            XRDB_LOAD_COLOR("dwm.color4", selbgcolor);
+        }
+        XRDB_LOAD_COLOR("dwm.color8", selbordercolor);
+
         XRDB_LOAD_COLOR("color0",  termcol0);
         XRDB_LOAD_COLOR("color1",  termcol1);
         XRDB_LOAD_COLOR("color2",  termcol2);
