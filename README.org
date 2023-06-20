@@ -1,13 +1,5 @@
 #+TITLE: dwm - dynamic window manager
 
-* Table of Contents :toc:
-- [[#about-dwm][About dwm]]
-  - [[#requirements][Requirements]]
-  - [[#patches-and-features][Patches and features]]
-- [[#installation][Installation]]
-- [[#running-dwm][Running dwm]]
-- [[#configuration][Configuration]]
-
 * About dwm
 dwm is an extremely fast, small, and dynamic window manager for X.
 
@@ -58,3 +50,4 @@ exec dwm
 
 * Configuration
 The configuration of dwm is done by creating a custom config.h and (re)compiling the source code.
+
