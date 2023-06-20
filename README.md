@@ -1,32 +1,17 @@
+# dwm - dynamic window manager
 
-# Table of Contents
-
-1.  [About dwm](#org036b7af)
-    1.  [Requirements](#orgfb865d5)
-    2.  [Patches and features](#org902c7a9)
-2.  [Installation](#orgdefad19)
-3.  [Running dwm](#orgfa38935)
-4.  [Configuration](#orgc9db3fd)
-
-
-
-<a id="org036b7af"></a>
-
-# About dwm
-===========
+## About dwm
 
 dwm is an extremely fast, small, and dynamic window manager for X.
 
 ## Requirements
-===============
+
 
 In order to build dwm you need:
 
 -   Xlib header files
 
 ## Patches and features
-=======================
-
 The folowing features have been added:
 
 -   i3-like default layout
@@ -36,8 +21,7 @@ The folowing features have been added:
 -   ~~automaticaly [hides unused tags](https://dwm.suckless.org/patches/hide_vacant_tags/)~~
 -   cycle tags via [shiftview](https://lists.suckless.org/dev/1104/7590.html)
 
-# Installation
-==============
+## Installation
 
 Edit config.mk to match your local setup (dwm is installed into the /usr/local namespace by default).
 
@@ -47,8 +31,7 @@ Afterwards enter the following command to build and install dwm (if necessary as
     make clean install
 ```
 
-# Running dwm
-=============
+## Running dwm
 
 Add the following line to your .xinitrc to start dwm using startx:
 
@@ -76,8 +59,7 @@ like this in your .xinitrc:
     exec dwm
 ```
 
-# Configuration
-===============
+## Configuration
 
 The configuration of dwm is done by creating a custom config.h and (re)compiling the source code.
 
