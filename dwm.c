@@ -1455,14 +1455,10 @@ loadxrdb()
         XRDB_LOAD_COLOR("dwm.foreground", normfgcolor);
         XRDB_LOAD_COLOR("dwm.background", normbgcolor);
         XRDB_LOAD_COLOR("dwm.background", normbordercolor);
-        /* flip fore- and background color if enabled in the config */
-        if (mincolors) {
-            XRDB_LOAD_COLOR("dwm.color4", selfgcolor);
-            XRDB_LOAD_COLOR("dwm.background", selbgcolor);
-        } else { 
-            XRDB_LOAD_COLOR("dwm.background", selfgcolor);
-            XRDB_LOAD_COLOR("dwm.color4", selbgcolor);
-        }
+        //XRDB_LOAD_COLOR("dwm.background", selfgcolor);
+        XRDB_LOAD_COLOR("dwm.color4", selfgcolor);
+        //XRDB_LOAD_COLOR("dwm.color4", selbgcolor);
+        XRDB_LOAD_COLOR("dwm.background", selbgcolor);
         XRDB_LOAD_COLOR("dwm.color14", selbordercolor);
 
         XRDB_LOAD_COLOR("color0",  termcol0);

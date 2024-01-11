@@ -27,7 +27,6 @@ static const char *fonts[]          = { "monospace:size=10" };
 static const char dmenufont[]       = "monospace:size=10";
 
 /* colors */
-static const int mincolors          = 0;        /* switch xrdb selbg and selfg for a 'less distracting' colorscheme */	
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
