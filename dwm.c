@@ -1236,28 +1236,9 @@ focusstack(const Arg *arg)
 	int i = stackpos(arg);
 	Client *c, *p;
 
-	//if (!selmon->sel || (selmon->sel->isfullscreen && lockfullscreen))
 	if(i < 0)
 		return;
-	/*
-	if (arg->i > 0) {
-		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
-		if (!c)
-			for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next);
-	} else {
-		for (i = selmon->clients; i != selmon->sel; i = i->next)
-			if (ISVISIBLE(i))
-				c = i;
-		if (!c)
-			for (; i; i = i->next)
-				if (ISVISIBLE(i))
-					c = i;
-	}
-	if (c) {
-		focus(c);
-		restack(selmon);
-	}
-	*/
+
 	for(p = NULL, c = selmon->clients; c && (i || !ISVISIBLE(c));
 	    i -= ISVISIBLE(c) ? 1 : 0, p = c, c = c->next);
 	focus(c ? c : p);
@@ -1471,9 +1452,7 @@ loadxrdb()
         XRDB_LOAD_COLOR("dwm.foreground", normfgcolor);
         XRDB_LOAD_COLOR("dwm.background", normbgcolor);
         XRDB_LOAD_COLOR("dwm.background", normbordercolor);
-        //XRDB_LOAD_COLOR("dwm.background", selfgcolor);
         XRDB_LOAD_COLOR("dwm.color4", selfgcolor);
-        //XRDB_LOAD_COLOR("dwm.color4", selbgcolor);
         XRDB_LOAD_COLOR("dwm.background", selbgcolor);
         XRDB_LOAD_COLOR("dwm.color14", selbordercolor);
 
