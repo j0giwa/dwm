@@ -33,52 +33,37 @@ static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#eeeeee";
 static char selbordercolor[]        = "#005577";
 static char selbgcolor[]            = "#005577";
-static char termcol0[] = "#000000"; /* black   */
-static char termcol1[] = "#ff0000"; /* red     */
-static char termcol2[] = "#33ff00"; /* green   */
-static char termcol3[] = "#ff0099"; /* yellow  */
-static char termcol4[] = "#0066ff"; /* blue    */
-static char termcol5[] = "#cc00ff"; /* magenta */
-static char termcol6[] = "#00ffff"; /* cyan    */
-static char termcol7[] = "#d0d0d0"; /* white   */
-static char termcol8[]  = "#808080"; /* black   */
-static char termcol9[]  = "#ff0000"; /* red     */
-static char termcol10[] = "#33ff00"; /* green   */
-static char termcol11[] = "#ff0099"; /* yellow  */
-static char termcol12[] = "#0066ff"; /* blue    */
-static char termcol13[] = "#cc00ff"; /* magenta */
-static char termcol14[] = "#00ffff"; /* cyan    */
-static char termcol15[] = "#ffffff"; /* white   */
+static char termcol0[]		    = "#000000"; /* black   */
+static char termcol1[]              = "#ff0000"; /* red     */
+static char termcol2[]              = "#33ff00"; /* green   */
+static char termcol3[]              = "#ff0099"; /* yellow  */
+static char termcol4[]              = "#0066ff"; /* blue    */
+static char termcol5[]              = "#cc00ff"; /* magenta */
+static char termcol6[]              = "#00ffff"; /* cyan    */
+static char termcol7[]              = "#d0d0d0"; /* white   */
+static char termcol8[]              = "#808080"; /* black   */
+static char termcol9[]              = "#ff0000"; /* red     */
+static char termcol10[]             = "#33ff00"; /* green   */
+static char termcol11[]             = "#ff0099"; /* yellow  */
+static char termcol12[]             = "#0066ff"; /* blue    */
+static char termcol13[]             = "#cc00ff"; /* magenta */
+static char termcol14[]             = "#00ffff"; /* cyan    */
+static char termcol15[]             = "#ffffff"; /* white   */
 static char *termcolor[] = {
-  termcol0,
-  termcol1,
-  termcol2,
-  termcol3,
-  termcol4,
-  termcol5,
-  termcol6,
-  termcol7,
-  termcol8,
-  termcol9,
-  termcol10,
-  termcol11,
-  termcol12,
-  termcol13,
-  termcol14,
-  termcol15,
+	termcol0,  termcol1,  termcol2,  termcol3,  termcol4,  termcol5,
+	termcol6,  termcol7,  termcol8,  termcol9,  termcol10, termcol11,
+	termcol12, termcol13, termcol14, termcol15,
 };
 static char *colors[][3] = {
-       /*               fg           bg           border   */
-       [SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-       [SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+	/*               fg           bg           border   */
+	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
+	[SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-//static const char *tags[] = { "dev", "www", "sys", "doc", "vbox", "chat", "mus", "vid", "gfx" };
-//static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
-//static const char *tags[] = { "", "爵", "", "", "", "", "", "", "" };
-
+static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -149,14 +134,13 @@ static const char *termcmd[]  = { "st", NULL };
 #include "shiftview.c"
 static const Key keys[] = {
 
-   // Program shortcuts
+	// Program shortcuts
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY|ShiftMask,             XK_BackSpace, quit,        {0} },
 
-
-    // Gaps
+	// Gaps
 	{ MODKEY|SUPERKEY,              XK_u,      incrgaps,       {.i = +1 } },
 	{ MODKEY|SUPERKEY|ShiftMask,    XK_u,      incrgaps,       {.i = -1 } },
 	{ MODKEY|SUPERKEY,              XK_i,      incrigaps,      {.i = +1 } },
@@ -174,14 +158,14 @@ static const Key keys[] = {
 	{ MODKEY|SUPERKEY,              XK_0,      togglegaps,     {0} },
 	{ MODKEY|SUPERKEY|ShiftMask,    XK_0,      defaultgaps,    {0} },
 
-    // Layouts
+	// Layouts
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },    // Tiled Layout
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[13]} },   // Floating
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },    // Monocle
 	{ MODKEY|ShiftMask,             XK_f,      togglefloating, {0} },
 	{ MODKEY,			XK_s,	   togglesticky,   {0} },
 
-    // Navigation 
+	// Navigation 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	STACKKEYS(MODKEY,                          focus)
 	STACKKEYS(MODKEY|ShiftMask,                push)
@@ -198,11 +182,13 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+
 	{ MODKEY,                       XK_F5,     xrdb,           {.v = NULL } },
 
 	{ MODKEY,                       XK_Left,      shiftview,      {.i = -1} },
     	{ MODKEY,                       XK_Right,      shiftview,      {.i = +1} },
 
+	{ MODKEY,                       XK_n,      togglealttag,   {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
