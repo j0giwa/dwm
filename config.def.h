@@ -176,11 +176,10 @@ static const Key keys[] = {
 
     // Layouts
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },    // Tiled Layout
-	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[5]} },    // bstack Layout
-	{ MODKEY,                       XK_c,      setlayout,      {.v = &layouts[11]} },   // Centered Master
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[13]} },   // Floating
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },    // Monocle
 	{ MODKEY|ShiftMask,             XK_f,      togglefloating, {0} },
+	{ MODKEY,			XK_s,	   togglesticky,   {0} },
 
     // Navigation 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
