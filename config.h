@@ -120,12 +120,15 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = {"dmenu_run", "-b", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor,  "-sf", selfgcolor,  NULL};
 static const char *termcmd[] = {"st", NULL};
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
 #include "shiftview.c"
 static const Key keys[] = {
     /* modifier                     key             function        argument */
     { MODKEY,                       XK_p,           spawn,         {.v = dmenucmd} },
     { MODKEY,                       XK_Return,	    spawn,         {.v = termcmd} },
+    { MODKEY|ShiftMask,             XK_Return,  togglescratch,     {.v = scratchpadcmd } },
 
     { MODKEY,                       XK_w,	    spawn,         SHCMD("firefox") },
     { MODKEY,                       XK_e,	    spawn,         SHCMD("thunar") },
@@ -135,8 +138,8 @@ static const Key keys[] = {
 
     { MODKEY,                       XK_t,	    setlayout,      {.v = &layouts[0]} }, /* tile */
     { MODKEY|ShiftMask,             XK_t,	    setlayout,      {.v = &layouts[5]} }, /* bstack */
-    { MODKEY,                       XK_y,	    setlayout,      {.v = &layouts[2]} }, /* spiral */
-    { MODKEY|ShiftMask,             XK_y,	    setlayout,      {.v = &layouts[3]} }, /* dwindle */
+    { MODKEY,                       XK_z,	    setlayout,      {.v = &layouts[2]} }, /* spiral */
+    { MODKEY|ShiftMask,             XK_z,	    setlayout,      {.v = &layouts[3]} }, /* dwindle */
     { MODKEY,                       XK_m,	    setlayout,      {.v = &layouts[1]} }, /* deck */
     { MODKEY|ShiftMask,             XK_m,	    setlayout,      {.v = &layouts[4]} }, /* monocle */
     { MODKEY,                       XK_u,	    setlayout,      {.v = &layouts[11]} }, /* centeredmaster */
@@ -146,7 +149,7 @@ static const Key keys[] = {
     { MODKEY,                       XK_b,	    togglebar,      {0} },
     { MODKEY,			    XK_g,	    togglegaps,	    {0} },
     { MODKEY|ShiftMask,		    XK_g,	    defaultgaps,    {0} },
-    { MODKEY,			    XK_z,	    incrgaps,	    {.i = +3 } },
+    { MODKEY,			    XK_y,	    incrgaps,	    {.i = +3 } },
     { MODKEY,			    XK_x,	    incrgaps,	    {.i = -3 } },
     { MODKEY,                       XK_i,	    incnmaster,     {.i = +1} },
     { MODKEY,                       XK_d,	    incnmaster,     {.i = -1} },
