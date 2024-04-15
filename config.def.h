@@ -166,6 +166,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[13]} },   // Floating
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[1]} },    // Monocle
 	{ MODKEY|ShiftMask,             XK_f,      togglefloating, {0} },
+	{ MODKEY|ShiftMask,             XK_f,      fullscreen,     {0} },
 	{ MODKEY,			XK_s,	   togglesticky,   {0} },
 
 	// Navigation 
