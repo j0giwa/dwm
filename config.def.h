@@ -1,14 +1,16 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
 /* appearance */
-static const unsigned int borderpx = 2; /* border pixel of windows */
+static const unsigned int borderpx = 2;  /* border pixel of windows */
 static const unsigned int snap     = 15; /* snap pixel */
-static const int swallowfloating   = 0; /* 1 means swallow floating windows by default */
-static const unsigned int gappih   = 5; /* horiz inner gap between windows */
-static const unsigned int gappiv   = 5; /* vert inner gap between windows */
+static const int swallowfloating   = 0;  /* 1 means swallow floating windows by default */
+static const unsigned int gappih   = 5;  /* horiz inner gap between windows */
+static const unsigned int gappiv   = 5;  /* vert inner gap between windows */
 static const unsigned int gappoh   = 10; /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov   = 10; /* vert outer gap between windows and screen edge */
-static       int smartgaps         = 0; /* 1 means no outer gap when there is only one window */
+static       int smartgaps         = 1;  /* 1 means no outer gap when there is only one window */
 
 /* systray */
 static const unsigned int systraypinning = 0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -188,9 +190,15 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,		    XK_Page_Up,	    shifttag,	    { .i = -1 } },
     { MODKEY,			    XK_Page_Down,   shiftview,	    { .i = +1 } },
     { MODKEY|ShiftMask,		    XK_Page_Down,   shifttag,	    { .i = +1 } },
-     
+    
+    { 0,                            XF86XK_AudioMute,         spawn, SHCMD("set-sink-mute @DEFAULT_SINK@ toggle") },
+    { 0,                            XF86XK_AudioLowerVolume,  spawn, SHCMD("set-sink-volume @DEFAULT_SINK@ -10%") },
+    { 0,                            XF86XK_AudioRaiseVolume,  spawn, SHCMD("set-sink-volume @DEFAULT_SINK@ +10%") },
+    { 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 10%-") },
+    { 0,                            XF86XK_MonBrightnessUp,   spawn, SHCMD("brightnessctl set 10%+") },
 
     { MODKEY,                       XK_n,           togglealttag,   {0} },
+
     TAGKEYS(			    XK_1,	                    0)
     TAGKEYS(			    XK_2,	                    1)
     TAGKEYS(			    XK_3,	                    2)
