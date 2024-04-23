@@ -23,7 +23,10 @@ static const int showsystray             = 1; /* 0 means no systray */
 static const int showbar           = 1; /* 0 means no bar */
 static const int topbar            = 1;  /* 0 means bottom bar */
 static const int user_bh           = 20; /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
-static const char *fonts[]         = { "Ubuntu:style:bold:size=10", "JetBrainsMono Nerd Font Mono:style:medium:size=15"};
+static const char *fonts[]         = { 
+    "Ubuntu:style:bold:size=10", 
+    "JetBrainsMono Nerd Font Mono:style:medium:size=15"
+};
 static const char dmenufont[]      = "Ubuntu:style:bold:size=10";
 
 /* colors */
@@ -137,7 +140,7 @@ static const Key keys[] = {
     /* modifier                     key             function        argument */
     { MODKEY,                       XK_p,           spawn,         {.v = dmenucmd} },
     { MODKEY,                       XK_Return,	    spawn,         {.v = termcmd} },
-    { MODKEY|ShiftMask,             XK_Return,  togglescratch,     {.v = scratchpadcmd } },
+    { MODKEY|ShiftMask,             XK_Return,      togglescratch, {.v = scratchpadcmd } },
 
     { MODKEY,                       XK_w,	    spawn,         SHCMD("firefox") },
     { MODKEY,                       XK_e,	    spawn,         SHCMD("thunar") },
@@ -153,52 +156,52 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_m,	    setlayout,      {.v = &layouts[4]} },  /* monocle */
     { MODKEY,                       XK_u,	    setlayout,      {.v = &layouts[11]} }, /* centeredmaster */
     { MODKEY|ShiftMask,             XK_u,	    setlayout,      {.v = &layouts[12]} },  /* centeredfloatingmaster */
-    { MODKEY,			    XK_f,           fullscreen,     {0} },		   /* Fullscreen */ 
+    { MODKEY,			            XK_f,       fullscreen,     {0} },		   /* Fullscreen */ 
     { MODKEY|ShiftMask,             XK_f,	    setlayout,      {.v = &layouts[13]} }, /* Floating */
 
-    { MODKEY,                       XK_b,	    togglebar,      {0} },
-    { MODKEY,			    XK_g,	    togglegaps,	    {0} },
-    { MODKEY|ShiftMask,		    XK_g,	    defaultgaps,    {0} },
-    { MODKEY,			    XK_y,	    incrgaps,	    {.i = +3 } },
-    { MODKEY,			    XK_x,	    incrgaps,	    {.i = -3 } },
+    { MODKEY|ShiftMask,             XK_g,       defaultgaps,    {0} },
+    { MODKEY,                       XK_b,       togglebar,      {0} },
+    { MODKEY,                       XK_g,       togglegaps,     {0} },
+    { MODKEY,                       XK_y,       incrgaps,       {.i = +3 } },
+    { MODKEY,                       XK_x,       incrgaps,       {.i = -3 } },
     { MODKEY,                       XK_i,	    incnmaster,     {.i = +1} },
     { MODKEY,                       XK_d,	    incnmaster,     {.i = -1} },
     { MODKEY,                       XK_h,	    setmfact,       {.f = -0.05} },
     { MODKEY,                       XK_l,	    setmfact,       {.f = +0.05} },
-    { MODKEY,                       XK_space,	    zoom,           {0} },
-    { MODKEY|ShiftMask,		    XK_space,	    togglefloating, {0} },
-    { MODKEY,			    XK_s,	    togglesticky,   {0} },
+    { MODKEY,                       XK_space,   zoom,           {0} },
+    { MODKEY|ShiftMask,		        XK_space,	togglefloating, {0} },
+    { MODKEY,                       XK_s,	    togglesticky,   {0} },
 
     { MODKEY,                       XK_Tab,	    view,           {0} },
     { MODKEY,                       XK_0,	    view,           {.ui = ~0} },
     { MODKEY|ShiftMask,             XK_0,	    tag,            {.ui = ~0} },
-    { MODKEY,                       XK_comma,	    focusmon,       {.i = -1} },
-    { MODKEY,                       XK_period,	    focusmon,       {.i = +1} },
-    { MODKEY|ShiftMask,             XK_comma,	    tagmon,         {.i = -1} },
-    { MODKEY|ShiftMask,             XK_period,	    tagmon,         {.i = +1} },
+    { MODKEY,                       XK_comma,	focusmon,       {.i = -1} },
+    { MODKEY,                       XK_period,	focusmon,       {.i = +1} },
+    { MODKEY|ShiftMask,             XK_comma,	tagmon,         {.i = -1} },
+    { MODKEY|ShiftMask,             XK_period,	tagmon,         {.i = +1} },
 
-    { MODKEY,			    XK_F3,	    spawn,	    {.v = (const char*[]){ "displayselect", NULL } } },
-    { MODKEY,			    XK_F4,	    spawn,	    SHCMD("st -e pulsemixer") },
+    { MODKEY,                       XK_n,           togglealttag,   {0} },
+
+    { MODKEY,                       XK_Left,	shiftview,       {.i = -1} },
+    { MODKEY,                       XK_Right,	shiftview,       {.i = +1} },
+
+    { MODKEY,                       XK_F3,	    spawn,	    {.v = (const char*[]){ "displayselect", NULL } } },
+    { MODKEY,                       XK_F4,	    spawn,	    SHCMD("st -e pulsemixer") },
     { MODKEY,                       XK_F5,	    xrdb,           {.v = NULL} },
-    { MODKEY,			    XK_F11,	    spawn,	    SHCMD("mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
-    { MODKEY,			    XK_F12,	    spawn,	    SHCMD("remaps") },
-    { MODKEY,			    XK_Insert,	    spawn,	    SHCMD("xdotool type $(grep -v '^#' ~/.local/share/snippets | dmenu -i -l 50 | cut -d' ' -f1)") },
+    { MODKEY,                       XK_F11,	    spawn,	    SHCMD("mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)") },
+    { MODKEY,                       XK_F12,	    spawn,	    SHCMD("remaps") },
+    { MODKEY,                       XK_Insert,	spawn,	    SHCMD("xdotool type $(grep -v '^#' ~/.local/share/snippets | dmenu -i -l 50 | cut -d' ' -f1)") },
 
-    { MODKEY,                       XK_Left,	    shiftview,       {.i = -1} },
-    { MODKEY,                       XK_Right,	    shiftview,       {.i = +1} },
-
-    { MODKEY,			    XK_Page_Up,	    shiftview,	    { .i = -1 } },
-    { MODKEY|ShiftMask,		    XK_Page_Up,	    shifttag,	    { .i = -1 } },
-    { MODKEY,			    XK_Page_Down,   shiftview,	    { .i = +1 } },
-    { MODKEY|ShiftMask,		    XK_Page_Down,   shifttag,	    { .i = +1 } },
+    { MODKEY,			            XK_Page_Up,	    shiftview,	    { .i = -1 } },
+    { MODKEY|ShiftMask,		        XK_Page_Up,	    shifttag,	    { .i = -1 } },
+    { MODKEY,			            XK_Page_Down,   shiftview,	    { .i = +1 } },
+    { MODKEY|ShiftMask,		        XK_Page_Down,   shifttag,	    { .i = +1 } },
     
     { 0,                            XF86XK_AudioMute,         spawn, SHCMD("set-sink-mute @DEFAULT_SINK@ toggle") },
     { 0,                            XF86XK_AudioLowerVolume,  spawn, SHCMD("set-sink-volume @DEFAULT_SINK@ -10%") },
     { 0,                            XF86XK_AudioRaiseVolume,  spawn, SHCMD("set-sink-volume @DEFAULT_SINK@ +10%") },
     { 0,                            XF86XK_MonBrightnessDown, spawn, SHCMD("brightnessctl set 10%-") },
     { 0,                            XF86XK_MonBrightnessUp,   spawn, SHCMD("brightnessctl set 10%+") },
-
-    { MODKEY,                       XK_n,           togglealttag,   {0} },
 
     TAGKEYS(			    XK_1,	                    0)
     TAGKEYS(			    XK_2,	                    1)
