@@ -159,17 +159,17 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_period,	    tagmon,         {.i = +1} },
     { MODKEY,                       XK_Tab,	    view,           {0} },
     { MODKEY,                       XK_n,           togglealttag,   {0} },
-    { MODKEY,                       XK_Left,	    shiftview,       {.i = -1} },
-    { MODKEY,                       XK_Right,	    shiftview,       {.i = +1} },
+    { MODKEY,                       XK_Left,	    shiftview,      {.i = -1} },
+    { MODKEY,                       XK_Right,	    shiftview,      {.i = +1} },
 
-    { MODKEY,                       XK_q,	    killclient,    {0} },
-    { MODKEY|ShiftMask,		    XK_q,	    spawn,	   {.v = (const char*[]){ "sysact", NULL } } },
-    { MODKEY,                       XK_Return,	    spawn,         {.v = termcmd} },
-    { MODKEY|ShiftMask,             XK_Return,      togglescratch, {.v = scratchpadcmd } },
-    { MODKEY,                       XK_p,           spawn,         {.v = dmenucmd} },
-    { MODKEY,                       XK_w,	    spawn,         SHCMD("firefox") },
-    { MODKEY,                       XK_e,	    spawn,         SHCMD("thunar") },
-    { MODKEY|ShiftMask,             XK_e,	    spawn,         SHCMD("emacs") },
+    { MODKEY,                       XK_q,	    killclient,     {0} },
+    { MODKEY|ShiftMask,		    XK_q,	    spawn,	    {.v = (const char*[]){ "sysact", NULL } } },
+    { MODKEY,                       XK_Return,	    spawn,          {.v = termcmd} },
+    { MODKEY|ShiftMask,             XK_Return,      togglescratch,  {.v = scratchpadcmd } },
+    { MODKEY,                       XK_p,           spawn,          {.v = dmenucmd} },
+    { MODKEY,                       XK_w,	    spawn,          SHCMD("firefox") },
+    { MODKEY,                       XK_e,	    spawn,          SHCMD("st -e lf") },
+    { MODKEY|ShiftMask,             XK_e,	    spawn,          SHCMD("emacs") },
 
     { MODKEY,                       XK_t,	    setlayout,      {.v = &layouts[0]} },  /* tile */
     { MODKEY|ShiftMask,             XK_t,	    setlayout,      {.v = &layouts[5]} },  /* bstack */
