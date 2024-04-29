@@ -22,8 +22,8 @@ static const int showbar           = 1; /* 0 means no bar */
 static const int topbar            = 1;  /* 0 means bottom bar */
 static const int user_bh           = 20; /* 0 means that dwm will calculate bar height, >= 1 means dwm will user_bh as bar height */
 static const char *fonts[]         = { 
-    "Ubuntu:style:bold:pixelsize=14:antialias=true:autohint=true", 
-    "JetBrainsMono Nerd Font Mono:style:medium:pixelsize=18:antialias=true:autohint=true"
+    "Ubuntu:style:bold:pixelsize=12:antialias=true:autohint=true", 
+    "JetBrainsMono Nerd Font Mono:style:medium:pixelsize=22:antialias=true:autohint=true"
 };
 static const char dmenufont[]      = "Ubuntu:style:bold:size=10";
 

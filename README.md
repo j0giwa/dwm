@@ -14,7 +14,6 @@ In order to build dwm you need:
 ## Patches and features
 The folowing features have been added:
 
--   i3-like default layout
 -   [status2d](https://dwm.suckless.org/patches/status2d/) with [systemtray](https://dwm.suckless.org/patches/systray/)
 -   [gaps](https://dwm.suckless.org/patches/vanitygaps/) across all layouts
 -   Reads [xresources](https://dwm.suckless.org/patches/xrdb/) - pywall compatible :)
