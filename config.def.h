@@ -63,8 +63,6 @@ static char *colors[][3] = {
 
 /* tagging */
 static const char *tags[] = {"", "", "󰒓", "󰈙", "", "󰭹", "󰝚", "󰕧", "󰏘"};
-static const char *tagsalt[] = { "󰎤", "󰎧", "󰎪", "󰎭", "󰎱", "󰎳", "󰎶", "󰎹", "󰎼" };
-static const int momentaryalttags = 0; /* 1 means alttags will show only when key is held down*/
 
 /* window rules */ 
 static const Rule rules[] = {
@@ -158,7 +156,6 @@ static const Key keys[] = {
     { MODKEY|ShiftMask,             XK_comma,	    tagmon,         {.i = -1} },
     { MODKEY|ShiftMask,             XK_period,	    tagmon,         {.i = +1} },
     { MODKEY,                       XK_Tab,	    view,           {0} },
-    { MODKEY,                       XK_n,           togglealttag,   {0} },
     { MODKEY,                       XK_Left,	    shiftview,      {.i = -1} },
     { MODKEY,                       XK_Right,	    shiftview,      {.i = +1} },
 
