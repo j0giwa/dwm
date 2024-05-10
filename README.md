@@ -17,7 +17,9 @@ The folowing features have been added:
 -   [status2d](https://dwm.suckless.org/patches/status2d/) with [systemtray](https://dwm.suckless.org/patches/systray/)
 -   [gaps](https://dwm.suckless.org/patches/vanitygaps/) across all layouts
 -   Reads [xresources](https://dwm.suckless.org/patches/xrdb/) - pywall compatible :)
--   ~~automaticaly [hides unused tags](https://dwm.suckless.org/patches/hide_vacant_tags/)~~
+    - dwm.color4 = selfgcolor
+    - dwm.color14 = selbordercolor
+-   automaticaly [hides unused tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
 -   cycle tags via [shiftview](https://lists.suckless.org/dev/1104/7590.html)
 
 ## Installation
